@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    /* Un fondo ligeramente distinto para la pantalla de login */
+    background-color: #f0f2f5;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.login-header {
+    padding: 24px;
+    background-color: #0078d4;
+    color: white;
+    text-align: center;
+}
+
+    .login-header h1 {
+        font-size: 1.6em;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .login-header p {
+        font-size: 0.9em;
+        opacity: 0.9;
+    }
+
+.login-body {
+    padding: 32px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 0.9em;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1em;
+        background-color: #fff;
+    }
+
+.btn {
+    padding: 12px 18px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #0078d4;
+    color: white;
+    border-color: #0078d4;
+}
+
+    .btn-primary:hover {
+        background-color: #005a9e;
+    }
+
+.login-error {
+    /* (Se muestra con style="display:block" desde el .cshtml) */
+    color: #d9534f;
+    background-color: #fdf2f2;
+    border: 1px solid #d9534f;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 16px;
+}
