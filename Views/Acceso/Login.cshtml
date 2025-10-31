@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null; // Esta página no usa el Layout (sidebar, header, etc.)
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - DistribuidoraSYS</title>
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="login-header">
+            <h1>DistribuidoraSYS</h1>
+            <p>Sistema de Gestión B2B Farmacéutico</p>
+        </div>
+        <div class="login-body">
+            <form asp-action="Login" method="post">
+                @Html.AntiForgeryToken() <div class="form-group">
+                    <label for="documento">Usuario (Documento)</label>
+                    <input type="text" id="documento" name="documento" required value="12345678">
+                </div>
+                <div class="form-group">
+                    <label for="clave">Contraseña</label>
+                    <input type="password" id="clave" name="clave" required value="admin">
+                </div>
+                <button id="btn-login" type="submit" class="btn btn-primary">Ingresar</button>
+
+                @if (ViewData["Error"] != null)
+                {
+                    <div id="login-error-msg" class="login-error" style="display:block;">
+                        @ViewData["Error"]
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

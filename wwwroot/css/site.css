@@ -1,22 +1,461 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+/* --- 1. Reseteo y Tipografía Base --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f4f7f6;
+    height: 100vh;
+    overflow: hidden; /* Simula una app de escritorio */
 }
+
+/* --- 2. Layout Principal de la Aplicación --- */
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 240px;
+    background-color: #ffffff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 20px;
+    font-size: 1.2em;
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+    color: #0078d4;
+    flex-shrink: 0;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 16px 0;
+    flex-grow: 1;
+}
+
+/* --- 2.1. Nuevo Menú Jerárquico --- */
+.menu-header {
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #0078d4;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.sub-menu {
+    list-style: none;
+    padding-left: 20px; /* Indentación */
+}
+
+    .sub-menu li a {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        padding-left: 32px; /* Indentación + ícono (simulado) */
+        text-decoration: none;
+        color: #444;
+        font-weight: 500;
+        gap: 12px;
+        cursor: pointer;
+        font-size: 0.95em;
+    }
+
+        .sub-menu li a:hover {
+            background-color: #f0f4f8;
+        }
+
+        .sub-menu li a.active, .nav-menu > li > a.active {
+            background-color: #0078d4;
+            color: white;
+            border-right: 3px solid #005a9e;
+        }
+
+/* Estilo para links de alto nivel (como Dashboard) */
+.nav-menu > li > a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    gap: 12px;
+    cursor: pointer;
+}
+
+    .nav-menu > li > a:hover {
+        background-color: #f0f4f8;
+    }
+
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+    color: #777;
+    flex-shrink: 0;
+}
+
+/* --- 3. Área de Contenido Principal --- */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #eef2f5;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+    .main-header h1 {
+        font-size: 1.4em;
+        font-weight: 600;
+    }
+
+.user-profile {
+    font-size: 0.9em;
+}
+
+    .user-profile span {
+        margin-right: 8px;
+    }
+    /* Cambiamos el "Cerrar Sesión" para que sea más obvio */
+    .user-profile a#btn-logout {
+        color: #d9534f;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .user-profile a#btn-logout:hover {
+            text-decoration: underline;
+        }
+
+
+.content-wrapper {
+    flex-grow: 1;
+    padding: 24px;
+    overflow-y: auto; /* Permite scroll solo en esta área */
+}
+
+.content-section {
+    display: none;
+}
+
+    .content-section.active {
+        display: block;
+    }
+
+/* --- 4. Componentes de UI (Estilo WPF/Minimalista) --- */
+.card {
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+    .card-header h2, .card-header h3 {
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+
+.card-body {
+    padding: 20px;
+}
+
+.card-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    text-align: right;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 0.9em;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="date"],
+    .form-group input[type="number"],
+    .form-group input[type="email"],
+    .form-group select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1em;
+        background-color: #fff;
+    }
+
+    .form-group input:read-only {
+        background-color: #f0f0f0;
+        cursor: not-allowed;
+    }
+
+/* Para mostrar datos en modales de detalle */
+.form-group-display {
+    margin-bottom: 12px;
+}
+
+    .form-group-display label {
+        font-size: 0.85em;
+        color: #555;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+
+    .form-group-display p {
+        font-size: 1em;
+        padding: 8px;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+
+.btn {
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.btn-primary {
+    background-color: #0078d4;
+    color: white;
+    border-color: #0078d4;
+}
+
+    .btn-primary:hover {
+        background-color: #005a9e;
+    }
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #ccc;
+}
+
+    .btn-secondary:hover {
+        background-color: #e0e0e0;
+    }
+
+.btn-danger {
+    background-color: #d9534f;
+    color: white;
+    border-color: #d9534f;
+}
+
+.btn-success {
+    background-color: #5cb85c;
+    color: white;
+    border-color: #5cb85c;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 1.1em;
+}
+
+.btn-icon-green {
+    color: #5cb85c;
+}
+
+.btn-icon-red {
+    color: #d9534f;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .data-table th,
+    .data-table td {
+        border-bottom: 1px solid #ddd;
+        padding: 12px 16px;
+        text-align: left;
+        font-size: 0.9em;
+        vertical-align: middle;
+    }
+
+    .data-table th {
+        background-color: #f9f9f9;
+        font-weight: 600;
+    }
+
+    .data-table tr:hover {
+        background-color: #f5f5f5;
+    }
+
+.table-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.total-summary {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* --- 5. Componente MODAL --- */
+.modal-container {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    align-items: center;
+    justify-content: center;
+}
+
+    .modal-container.active {
+        display: flex;
+    }
+
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 600px; /* Ancho default */
+    animation: fadeIn 0.3s ease;
+}
+
+    /* Modal más grande para detalles */
+    .modal-content.modal-lg {
+        max-width: 800px;
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .modal-header h2 {
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    text-align: right;
+}
+
+/* --- 6. Componente TABS (Pestañas) --- */
+.tab-content {
+    display: none;
+}
+
+    .tab-content.active {
+        display: block;
+    }
+
+.btn-secondary.active {
+    background-color: #0078d4;
+    color: white;
+    border-color: #0078d4;
+}
+
+.status-active {
+    color: #5cb85c;
+    font-weight: 600;
+}
+
+.status-inactive {
+    color: #d9534f;
+    font-weight: 600;
+}
+

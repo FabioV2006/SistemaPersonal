@@ -1,49 +1,86 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SistemaWebDisbofar</title>
+    <title>@ViewData["Title"] - DistribuidoraSYS</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SistemaWebDisbofar.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SistemaWebDisbofar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                DistribuidoraSYS
+            </div>
+            <ul class="nav-menu">
+                <li><a asp-controller="Home" asp-action="Index" data-target="vista-dashboard"><span>🏠</span> Dashboard</a></li>
+
+                <li class="menu-header"><span>🛒</span> Ventas</li>
+                <ul class="sub-menu">
+                    <li><a asp-controller="Venta" asp-action="Registrar">Registrar Venta</a></li>
+                    <li><a asp-controller="Venta" asp-action="Historial">Historial de Ventas</a></li>
+                </ul>
+
+                <li class="menu-header"><span>📦</span> Compras</li>
+                <ul class="sub-menu">
+                    <li><a asp-controller="Compra" asp-action="Registrar">Registrar Compra</a></li>
+                    <li><a asp-controller="Compra" asp-action="Historial">Historial de Compras</a></li>
+                </ul>
+
+                <li class="menu-header"><span>↩️</span> Devoluciones</li>
+                <ul class="sub-menu">
+                    <li><a asp-controller="Devolucion" asp-action="Cliente">Dev. de Clientes</a></li>
+                    <li><a asp-controller="Devolucion" asp-action="Proveedor">Dev. a Proveedor</a></li>
+                    <li><a asp-controller="Devolucion" asp-action="HistorialCliente">Historial Dev. Clientes</a></li>
+                    <li><a asp-controller="Devolucion" asp-action="HistorialProveedor">Historial Dev. Proveedor</a></li>
+                </ul>
+
+                <li class="menu-header"><span>🏪</span> Catálogos</li>
+                <ul class="sub-menu">
+                    <li><a asp-controller="Catalogo" asp-action="Clientes">Clientes</a></li>
+                    <li><a asp-controller="Catalogo" asp-action="Proveedores">Proveedores</a></li>
+                    <li><a asp-controller="Catalogo" asp-action="Lotes">Inventario (Lotes)</a></li>
+                </ul>
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 8px 20px;">
+                <li><a asp-controller="Reporte" asp-action="Index"><span>📈</span> Reportes</a></li>
+
+                @if (User.IsInRole("Administrador"))
+                {
+                    <li><a asp-controller="Admin" asp-action="Index"><span>⚙️</span> Administración</a></li>
+                }
+            </ul>
+            <div class="sidebar-footer">
+                © 2025 Distribuidora
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1 id="main-page-title">@ViewData["Title"]</h1>
+                <div class="user-profile">
+                    <span>Bienvenido, <strong>@User.Identity?.Name</strong></span>
+
+                    <a asp-controller="Acceso" asp-action="Logout" id="btn-logout">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - SistemaWebDisbofar - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <div id="modal-nuevo-cliente" class="modal-container"> ... </div>
+    <div id="modal-confirmar-accion" class="modal-container"> ... </div>
+    <div id="modal-detalle-venta" class="modal-container"> ... </div>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

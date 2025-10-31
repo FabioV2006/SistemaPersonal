@@ -1,8 +1,45 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="grid-layout" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 24px;">
+    <div class="card">
+        <div class="card-body">
+            <h3 style="font-size: 0.9em; color: #555;">Ventas del Mes</h3>
+            <p style="font-size: 2em; font-weight: 600; color: #0078d4;">S/ 0.00</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h3 style="font-size: 0.9em; color: #555;">Clientes Activos</h3>
+            <p style="font-size: 2em; font-weight: 600;">0</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h3 style="font-size: 0.9em; color: #555;">Lotes por Vencer (90d)</h3>
+            <p style="font-size: 2em; font-weight: 600; color: #d9534f;">0</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h3 style="font-size: 0.9em; color: #555;">Stock Crítico</h3>
+            <p style="font-size: 2em; font-weight: 600; color: #f0ad4e;">0 Productos</p>
+        </div>
+    </div>
+</div>
+
+<div class="grid-layout" style="grid-template-columns: 2fr 1fr;">
+    <div class="card">
+        <div class="card-header"><h2>Ventas de los Últimos 6 Meses</h2></div>
+        <div class="card-body" style="height: 300px; display: grid; place-items: center; color: #999;">
+            <p>(Aquí iría un gráfico de barras de ventas)</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header"><h2>Top 5 Productos Vendidos</h2></div>
+        <div class="card-body" style="height: 300px; display: grid; place-items: center; color: #999;">
+            <p>(Aquí iría un gráfico de pastel)</p>
+        </div>
+    </div>
 </div>
